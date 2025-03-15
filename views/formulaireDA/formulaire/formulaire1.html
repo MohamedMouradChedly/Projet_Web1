@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infolab</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        
+        body {
+            background-image: url('essect.jpg'); 
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat; 
+            min-height: 100vh; 
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.8); 
+            padding: 2rem;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .main-content {
+            padding-top: 70px; 
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.php">ESSECT Clubs</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.php">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Clubs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+   
+    <div class="main-content container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="form-container">
+            <h2 class="text-center mb-4">Demande D'adhesion</h2>
+            <form id="contactForm" onsubmit="return validateForm()">
+                <div class="mb-3">
+                    <label for="nom" class="form-label">Nom :</label>
+                    <input type="text" class="form-control" id="nom" name="nom" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email :</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="telephone" class="form-label">Numéro de téléphone :</label>
+                    <input type="tel" class="form-control" id="telephone" name="telephone" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="adresse" class="form-label">Adresse :</label>
+                    <input type="text" class="form-control" id="adresse" name="adresse" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="niveau" class="form-label">Niveau d'études :</label>
+                    <select class="form-select" id="niveau" name="niveau" required onchange="updateAnneeOptions()">
+                        <option value="">Sélectionnez votre niveau</option>
+                        <option value="licence">Licence</option>
+                        <option value="master">Master</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="annee" class="form-label">Année Scolaire :</label>
+                    <select class="form-select" id="annee" name="annee" required disabled>
+                        <option value="">Sélectionnez d'abord votre niveau</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="cv" class="form-label">Ajouter votre CV (PDF uniquement) :</label>
+                    <input type="file" class="form-control" id="cv" name="cv" accept=".pdf">
+                    <div id="cvError" class="text-danger" style="display: none;">Veuillez ajouter un fichier PDF.</div>
+                </div>
+
+                
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message :</label>
+                    <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Envoyer</button>
+                    </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function validateForm() {
+            const cv = document.getElementById("cv");
+            const cverreur = document.getElementById("cverreur");
+            // verification des fichiers
+            if (!cv.files || cv.files.length === 0) {
+                cverreur.style.display = "block"; 
+                return false; 
+            }
+
+            // Vérifier s'il est PDF
+            const file = cv.files[0];
+            if (file.type !== "application/pdf") {
+                cverreur.textContent = "Veuillez sélectionner un fichier PDF.";
+                cverreur.style.display = "block"; 
+                return false; 
+            }
+            // cahcher le msg d'erreur si ok
+            cverreur.style.display = "none"; 
+            return true; 
+        }
+
+        function updateAnneeOptions() {
+            const niveau = document.getElementById("niveau").value; 
+            const annee = document.getElementById("annee"); 
+
+            // Réinitialiser les options
+            annee.innerHTML = "";
+
+            if (niveau === "licence") {
+                annee.disabled = false;
+                annee.innerHTML = `
+                    <option value="1">1ère Année</option>
+                    <option value="2">2ème Année</option>
+                    <option value="3">3ème Année</option>
+                `;
+            } 
+            } else {
+                // Si aucun niveau n'est sélectionné
+                annee.disabled = true;
+                annee.innerHTML = `<option value="">Sélectionnez d'abord votre niveau</option>`;
+            }
+        
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
