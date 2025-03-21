@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Informatique - ESSECT</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .carousel-item img {
+            width: 100%;
+            height: auto; 
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">ESSECT Clubs</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.php">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="club.html">Clubs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.html">Connexion</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mt-5">
+        <section>
+            <h1 class="text-center">Infolab</h1>
+            <p class="text-muted">Date de création : 01/01/2023</p>
+            <p>
+                Le club InfoLab ESSECT est un espace d'innovation technologique où les étudiants développent leurs compétences en informatique et programmation à travers des projets et ateliers. 
+                Il favorise la collaboration et l'échange de connaissances techniques.
+            </p>
+        </section>
+
+        <section class="mt-5">
+            <h2>Photos du Club</h2>
+            <div id="clubCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#clubCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#clubCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#clubCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#clubCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                </div>
+
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="infolab1.jpg" class="d-block w-100" alt="Photo du club 1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="infolab2.jpg" class="d-block w-100" alt="Photo du club 2">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="infolab3.jpg" class="d-block w-100" alt="Photo du club 3">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="infolab4.jpg" class="d-block w-100" alt="Photo du club 4">
+                    </div>
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#clubCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Précédent</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#clubCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Suivant</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="mt-5">
+            <p>Vous devez être connecté pour postuler à ce club.</p>
+            <a href="login.php" class="btn btn-primary">Se connecter</a>
+        </section>
+    </main>
+
+    <footer class="bg-light text-center py-4 mt-5">
+        <p>&copy; 2023 ESSECT Clubs. Tous droits réservés.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

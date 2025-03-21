@@ -1,6 +1,5 @@
 <?php
 require_once 'models/ModelDA.php';
-require_once 'BD.php';
 
 class DemandeAdhesionController {
     private $model;
@@ -9,7 +8,6 @@ class DemandeAdhesionController {
         $this->model = new DemandeAdhesionModel();
     }
 
-    // Envoyer une demande d'adhésion (étudiant)
     public function createDemande() {
         session_start();
         if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'etudiant') {
@@ -19,7 +17,7 @@ class DemandeAdhesionController {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userId = $_SESSION['user']['id_user'];
             $clubId = $_POST['id_club'];
-            $cvPath = $_POST['cv']; // Supposons que le chemin du CV est envoyé
+            $cvPath = $_FILES['cv']['name'];
 
             if ($this->model->createDemande($userId, $clubId, $cvPath)) {
                 header("Location: clubs.php");
@@ -29,7 +27,6 @@ class DemandeAdhesionController {
         include('views/demande_adhesion/create.php');
     }
 
-    // Voir les demandes pour un club (club_admin)
     public function listDemandes() {
         session_start();
         if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'club_admin') {
@@ -47,7 +44,6 @@ class DemandeAdhesionController {
         include('views/demande_adhesion/list.php');
     }
 
-    // Accepter ou refuser une demande
     public function updateStatut() {
         session_start();
         if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'club_admin') {
